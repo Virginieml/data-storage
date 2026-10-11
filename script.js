@@ -34,7 +34,7 @@ const emptyState = document.querySelector("#empty-state");
 const statusBanner = document.querySelector("#status-banner");
 const submitBtn = document.querySelector("#submit-btn");
 
-// LISTEN to the 'visitors' collection in the cloud
+// LISTEN to the 'Visitors' collection in the cloud
 onSnapshot(collection(db, "Visitors"), (snapshot) => {
   // Every time the cloud changes, clear the screen first
   visitorList.innerHTML = "";
@@ -51,8 +51,8 @@ onSnapshot(collection(db, "Visitors"), (snapshot) => {
   // Loop through all the documents currently in the cloud
   snapshot.forEach((doc) => {
     const visitor = doc.data(); // Extract the JSON object
-    const name = visitor.Name || visitor.visitorName || visitor.Username || "Guest";
-    const company = visitor.Company || visitor.companyVisiting || visitor.Company || "N/A";
+    const name = visitor.Name || visitor.name || visitor.visitorName || visitor.Username || "Guest";
+    const company = visitor.Company || visitor.company || visitor.companyVisiting || "N/A";
 
     // Paint it onto the screen
     visitorList.innerHTML += `
@@ -89,8 +89,10 @@ if (visitorForm) {
     }
 
     try {
-      // Add document to the 'visitors' collection in Firestore
-      await addDoc(collection(db, "visitors"), {
+      // Add document to the 'Visitors' collection in Firestore
+      await addDoc(collection(db, "Visitors"), {
+        Name: name,
+        Company: company,
         name: name,
         company: company,
         createdAt: serverTimestamp()
