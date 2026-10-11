@@ -35,7 +35,7 @@ const statusBanner = document.querySelector("#status-banner");
 const submitBtn = document.querySelector("#submit-btn");
 
 // LISTEN to the 'visitors' collection in the cloud
-onSnapshot(collection(db, "visitors"), (snapshot) => {
+onSnapshot(collection(db, "Visitors"), (snapshot) => {
   // Every time the cloud changes, clear the screen first
   visitorList.innerHTML = "";
 
